@@ -10,16 +10,21 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { HomeComponent } from './home/home.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { UserComponent } from './components/user/user.component';
+import { UsersComponent } from './components/users/users.component';
 
 const appRoutes: Routes = [
-  {path: 'first-page', component: HomeComponent }
+  {path: 'first-page', component: HomeComponent },
+  {path: 'second-page', component: UserComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
