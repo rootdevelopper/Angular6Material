@@ -1,63 +1,34 @@
-<p>
-  users works!
-</p>
-<button [disabled]="!enabledAdd" mat-flat-button [ngClass]="currentClasses" >Add User</button>
+<button [disabled]="!enabledAdd" mat-flat-button>Add User</button>
 <ng-container *ngIf="loaded; else loading">
+  <ng-container *ngIf="users.length > 0; else noUsers">
+    <mat-list *ngFor="let user of users">
+      <mat-card class="example-card" [class.disabledUser]="!user.isActive">
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <mat-card-title>{{user.firstName | uppercase }}, {{user.lastName}}</mat-card-title>
+          <mat-card-subtitle>{{user.address.city}}</mat-card-subtitle>
+        </mat-card-header>
 
-  <!-- <mat-card>
- <mat-card-title>
-    <h2>Users</h2>
- </mat-card-title>
-   <mat-card-content>
-      
-    <mat-list *ngIf="users.length > 0; else noUsers">
-          <mat-list-item *ngFor="let user of users">
-           
-            <h1>Hello {{user.firstName}}, {{user.lastName}} </h1>
-              <mat-list *ngIf="showExtended">
-                <mat-list-item>
-                    <img mat-card-image [src]="user.image">
-                    {{user.address.street}}
-                    {{user.address.city}} - 
-                    {{user.address.state}}
-                </mat-list-item>
-              </mat-list>
-            </mat-list-item>
+        <img *ngIf="showExtended" mat-card-image [src]="user.image">
+        <mat-card-content *ngIf="showExtended">
+          <p> {{user.address.state}}</p>
+          <p>{{user.address.street}}</p>
+          <p>Joined: {{user.registered | date:"mm/dd/yyyy" }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
     </mat-list>
-
-   </mat-card-content>
-  </mat-card>  -->
- <ng-container *ngIf="users.length > 0; else noUsers">
-  <mat-list *ngFor="let user of users">
-      <mat-card class="example-card"  [class.disabledUser]="!user.isActive" [style.border-color]="user.isActive? 'green':'' " >
-          <mat-card-header>
-            <div mat-card-avatar></div>
-            <mat-card-title [ngStyle]="currentStyles" >{{user.firstName | uppercase }}, {{user.lastName}}</mat-card-title>
-            <mat-card-subtitle>{{user.address.city}}</mat-card-subtitle>
-          </mat-card-header>
-
-          <img *ngIf="showExtended"  mat-card-image [src]="user.image">
-          <mat-card-content *ngIf="showExtended">
-            <p> {{user.address.state}}</p>
-            <p>{{user.address.street}}</p>
-            <p>Balance: {{user.balance | currency:"GBP":"symbol"}} until {{1| percent}} </p>
-            <p>Joined: {{user.registered | date:"mm/dd/yyyy" }}</p>
-            <p>{{5 | number:'1.2'}}</p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-  </mat-list>
-</ng-container>
-    <ng-template #noUsers>
-     <h1>
-       NO Users
-     </h1> 
-    </ng-template>
+  </ng-container>
+  <ng-template #noUsers>
+    <h1>
+      NO Users
+    </h1>
+  </ng-template>
 </ng-container>
 
 <ng-template #loading>
-    <h4>Loading users ... </h4>
+  <h4>Loading users ... </h4>
 </ng-template>

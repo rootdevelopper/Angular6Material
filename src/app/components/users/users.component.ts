@@ -11,8 +11,6 @@ users: User[];
 showExtended: boolean = true;
 loaded: boolean = false;
 enabledAdd: boolean = true;
-currentClasses: {};
-currentStyles: {};
 
   constructor() { }
 
@@ -29,7 +27,6 @@ currentStyles: {};
           state: 'TX'
         }, image: 'http://lorempixel.com/300/300/animals/3/',
         isActive: false,
-        balance: 100,
         registered: new Date('01/01/1901 01:07:01' )
         },
         {
@@ -42,7 +39,6 @@ currentStyles: {};
           state: 'TX'
         },  image: 'http://lorempixel.com/300/300/people/3',
         isActive: true,
-        balance: 100,
         registered: new Date('01/01/1901 01:07:01' )
         },
         {
@@ -55,7 +51,6 @@ currentStyles: {};
           state: 'TX'
         },  image: 'http://lorempixel.com/300/300/people/19',
         isActive: true,
-        balance: 100,
         registered: new Date('01/01/1901 01:07:01' )
         },
         {
@@ -68,42 +63,10 @@ currentStyles: {};
           state: 'TX'
         },  image: 'http://lorempixel.com/600/600/people/9',
         isActive: true,
-        balance: 100,
         registered: new Date('01/01/1901 01:07:01' )
         }
       ];
       this.loaded = true;
-      this.setCurrentClasses();
-      this.setCurrentStyles();
     }, 2000);
-   
-
-    // this.addUsers({
-    //   firstName: 'P',
-    //   lastName: 'Q',
-    //   age: 199,
-    //   address: {
-    //   street: 'square',
-    //   city: 'frisco',
-    //   state: 'TX'
-    //   },  image: 'http://lorempixel.com/600/600/people/6',
-    //   isActive: true
-    // });
-  }
-  // addUsers(user: User){
-  //   this.users.push(user);
-  // }
-
-  setCurrentClasses(){
-    this.currentClasses = {
-      'success': this.enabledAdd
-    }
-  }
-
-  setCurrentStyles(){
-    this.currentStyles = {
-      'padding-top': this.showExtended ? '0': '40px',
-      'font-size': this.showExtended ? '': '40px'
-    }
   }
 }
