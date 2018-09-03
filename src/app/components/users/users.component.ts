@@ -7,10 +7,25 @@ import { User } from '../../models/User';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  user: User =   {
+    firstName: '',
+    lastName: '',
+    age: 0,
+    address: {
+    street: '',
+    city: '',
+    state: ''
+  }, image: '',
+  isActive: false,
+  registered: new Date('01/01/1901 01:07:01' ),
+  hide: true
+  }
 users: User[];
 showExtended: boolean = true;
 loaded: boolean = false;
-enabledAdd: boolean = true;
+enabledAdd: boolean = false;
+hidden: string='more';
+showUserForm: boolean= false;
 
   constructor() { }
 
@@ -27,7 +42,8 @@ enabledAdd: boolean = true;
           state: 'TX'
         }, image: 'http://lorempixel.com/300/300/animals/3/',
         isActive: false,
-        registered: new Date('01/01/1901 01:07:01' )
+        registered: new Date('01/01/1901 01:07:01' ),
+        hide: true
         },
         {
           firstName: 'K',
@@ -39,7 +55,8 @@ enabledAdd: boolean = true;
           state: 'TX'
         },  image: 'http://lorempixel.com/300/300/people/3',
         isActive: true,
-        registered: new Date('01/01/1901 01:07:01' )
+        registered: new Date('01/01/1901 01:07:01' ),
+        hide: true
         },
         {
           firstName: 'L',
@@ -51,7 +68,8 @@ enabledAdd: boolean = true;
           state: 'TX'
         },  image: 'http://lorempixel.com/300/300/people/19',
         isActive: true,
-        registered: new Date('01/01/1901 01:07:01' )
+        registered: new Date('01/01/1901 01:07:01' ),
+        hide: true
         },
         {
           firstName: 'N',
@@ -63,10 +81,44 @@ enabledAdd: boolean = true;
           state: 'TX'
         },  image: 'http://lorempixel.com/600/600/people/9',
         isActive: true,
-        registered: new Date('01/01/1901 01:07:01' )
+        registered: new Date('01/01/1901 01:07:01' ),
+        hide: false
         }
       ];
       this.loaded = true;
     }, 2000);
+  }
+  
+  addUser(){
+   this.user.isActive = true;
+   this.user.registered = new Date();
+    this.users.unshift(this.user);
+    this.user = {
+      firstName: '',
+      lastName: '',
+      age: 0,
+      address: {
+      street: '',
+      city: '',
+      state: ''
+    }, image: '',
+    isActive: false,
+    registered: new Date('01/01/1901 01:07:01' ),
+    hide: true
+    }
+  }
+
+  onSubmitonSubmit(e){
+
+    e.preventDefault();
+  }
+
+  toggleView(user: User){
+    user.hide = !user.hide;
+    if(this.hidden === 'more'){
+      this.hidden = 'less'
+    }else {
+      this.hidden = 'more'
+    }
   }
 }

@@ -1,34 +1,84 @@
-<button [disabled]="!enabledAdd" mat-flat-button>Add User</button>
-<ng-container *ngIf="loaded; else loading">
-  <ng-container *ngIf="users.length > 0; else noUsers">
-    <mat-list *ngFor="let user of users">
-      <mat-card class="example-card" [class.disabledUser]="!user.isActive">
-        <mat-card-header>
-          <div mat-card-avatar></div>
-          <mat-card-title>{{user.firstName | uppercase }}, {{user.lastName}}</mat-card-title>
-          <mat-card-subtitle>{{user.address.city}}</mat-card-subtitle>
-        </mat-card-header>
+<mat-card>
+  <button mat-raised-button (click)="showUserForm = !showUserForm">
+    Add
+  </button>
+  <ng-container *ngIf="showUserForm">
+    <h2>Add User</h2>
 
-        <img *ngIf="showExtended" mat-card-image [src]="user.image">
-        <mat-card-content *ngIf="showExtended">
-          <p> {{user.address.state}}</p>
-          <p>{{user.address.street}}</p>
-          <p>Joined: {{user.registered | date:"mm/dd/yyyy" }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-list>
+    <form (submit)="onSubmit($event)">
+      <div class="example-container">
+
+        <mat-form-field>
+          <input [(ngModel)]="user.firstName" name="firstName" matInput placeholder="Name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input [(ngModel)]="user.lastName" name="lastName" matInput placeholder="Last name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input [(ngModel)]="user.city" name="city" matInput placeholder="City">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input [(ngModel)]="user.street" name="street" matInput placeholder="Street">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input [(ngModel)]="user.state" name="state" matInput placeholder="State">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input [(ngModel)]="user.age" name="age" matInput placeholder="age">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="user.image" name="image" matInput placeholder="Image as URL please">
+        </mat-form-field>
+
+        <br>
+        <button [disabled]="user.firstName =='' || user.lastName == '' " mat-flat-button (click)="addUser()">Add User
+        </button>
+      </div>
+    </form>
+
+
   </ng-container>
-  <ng-template #noUsers>
-    <h1>
-      NO Users
-    </h1>
-  </ng-template>
-</ng-container>
+  <ng-container *ngIf="loaded; else loading">
+    <ng-container *ngIf="users.length > 0; else noUsers">
+      <mat-list *ngFor="let user of users">
+        <mat-card class="example-card" [class.disabledUser]="!user.isActive">
+          <mat-card-header>
+            <div mat-card-avatar></div>
+            <mat-card-title>{{user.firstName | uppercase }}, {{user.lastName}}</mat-card-title>
+            <mat-card-subtitle>{{user.address.city}}</mat-card-subtitle>
+            <span class="example-spacer"></span>
+            <button mat-raised-button (click)="toggleView(user)">
+              <!-- <div ngText="user.hide? 'show more ...' :'Show less' "></div>  -->
+              Show {{hidden}}
+            </button>
+          </mat-card-header>
+          <img *ngIf="showExtended" mat-card-image [src]="user.image">
+          <mat-card-content *ngIf="!user.hide">
+            <p> {{user.address.state}}</p>
+            <p>{{user.address.street}}</p>
+            <p>Joined: {{user.registered | date:"mm/dd/yyyy" }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-list>
+    </ng-container>
+    <ng-template #noUsers>
+      <h1>
+        NO Users
+      </h1>
+    </ng-template>
+  </ng-container>
 
-<ng-template #loading>
-  <h4>Loading users ... </h4>
-</ng-template>
+  <ng-template #loading>
+    <h4>Loading users ... </h4>
+  </ng-template>
+
+</mat-card>
