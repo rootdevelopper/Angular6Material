@@ -1,3 +1,17 @@
 <p>
   post-form works!
 </p>
+
+<mat-card>
+  <form action="">
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="title" name="title" #title>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="body" name="body" #body>
+        </mat-form-field>
+   <button (click)="addPost(title.value, body.value)" mat-raised-button color="primary">Add post </button>
+    </div>
+  </form>
+</mat-card>
