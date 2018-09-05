@@ -5,27 +5,28 @@
   <ng-container *ngIf="showUserForm">
     <h2>Add User</h2>
 
-    <form (submit)="onSubmit($event)">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
       <div class="example-container">
 
         <mat-form-field>
-          <input [(ngModel)]="user.firstName" name="firstName" matInput placeholder="Name">
+          <input [(ngModel)]="user.firstName" name="firstName" matInput placeholder="Name" #user.firsName="ngModel" required >
         </mat-form-field>
 
         <mat-form-field>
-          <input [(ngModel)]="user.lastName" name="lastName" matInput placeholder="Last name">
+          <input [(ngModel)]="user.lastName" name="lastName" matInput placeholder="Last name" #user.lastname="ngModel" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input [(ngModel)]="user.email" name="email" matInput placeholder="email">
+          <input [(ngModel)]="user.email" name="email" matInput placeholder="email" #user.email="ngModel" required minlength="4">
         </mat-form-field>
 
         <mat-form-field>
-          <input [(ngModel)]="user.image" name="image" matInput placeholder="Image as URL please">
+          <input [(ngModel)]="user.image" name="image" matInput placeholder="Image as URL please" #user.image="ngModel" >
         </mat-form-field>
 
         <br>
-        <button [disabled]="user.firstName =='' || user.lastName == '' " mat-flat-button>Add User
+        <button [disabled]="!userForm.valid" mat-flat-button>Add User
         </button>
       </div>
     </form>

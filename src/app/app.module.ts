@@ -22,6 +22,7 @@ import { environment } from '../environments/environment';
 import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
 import { instantiateSupportedAnimationDriver } from '@angular/platform-browser/animations/src/providers';
+import { UserService } from './services/user.service';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: HomeComponent },
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../models/User';
 import { matMenuAnimations } from '@angular/material';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -23,49 +24,22 @@ export class UsersComponent implements OnInit {
   enabledAdd: boolean = false;
   hidden: string = 'more';
   showUserForm: boolean = false;
+  @ViewChild('userForm') form: any;
+  data: any;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+
+    this.userService.getData().subscribe(data => {
+      console.log(data);
+    });
+
     setTimeout(() => {
-      this.users = [
-        {
-          firstName: 'Je',
-          lastName: 'Dirais',
-          email: 'rrte@matMenuAnimations.com',
-          image: 'http://lorempixel.com/300/300/animals/3/',
-          isActive: false,
-          registered: new Date('01/01/1901 01:07:01'),
-          hide: true
-        },
-        {
-          firstName: 'K',
-          lastName: 'D',
-
-          email: 'rrte@matMenuAnimations.com', image: 'http://lorempixel.com/300/300/people/3',
-          isActive: true,
-          registered: new Date('01/01/1901 01:07:01'),
-          hide: true
-        },
-        {
-          firstName: 'L',
-          lastName: 'M',
-
-          email: 'rrte@matMenuAnimations.com', image: 'http://lorempixel.com/300/300/people/19',
-          isActive: true,
-          registered: new Date('01/01/1901 01:07:01'),
-          hide: true
-        },
-        {
-          firstName: 'N',
-          lastName: 'O',
-          email: 'rrte@matMenuAnimations.com', image: 'http://lorempixel.com/600/600/people/9',
-          isActive: true,
-          registered: new Date('01/01/1901 01:07:01'),
-          hide: false
-        }
-      ];
+    this.userService.getUsers().subscribe(users => {
+      this.users = users;
       this.loaded = true;
+    });
     }, 2000);
   }
 
@@ -85,10 +59,19 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  onSubmitonSubmit(e) {
-
-    e.preventDefault();
-  }
+  onSubmit({value, valid}: {value: User, valid: boolean}) {
+     if(!valid){
+      console.log('Form bad');
+     } else {
+       console.log('ok ');
+       value.isActive = true;
+       value.registered = true;
+       value.hide = true;
+       //this.users.unshift(value);
+      this.userService.addUser(value);
+       this.form.reset();
+     }
+    }
 
   toggleView(user: User) {
     user.hide = !user.hide;
