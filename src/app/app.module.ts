@@ -23,11 +23,14 @@ import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
 import { instantiateSupportedAnimationDriver } from '@angular/platform-browser/animations/src/providers';
 import { UserService } from './services/user.service';
+import { PostService } from './services/post.service';
+import { PostsComponent } from './components/posts/posts.component';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: HomeComponent },
   { path: 'second-page', component: UserComponent },
-  { path: 'third-page', component: UsersComponent }
+  { path: 'third-page', component: UsersComponent },
+  { path: 'post-page', component: PostsComponent }
 ];
 
 @NgModule({
@@ -36,7 +39,8 @@ const appRoutes: Routes = [
     NavigationComponent,
     HomeComponent,
     UserComponent,
-    UsersComponent
+    UsersComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ const appRoutes: Routes = [
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [UserService],
+  providers: [UserService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
