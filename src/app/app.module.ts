@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +26,7 @@ import { instantiateSupportedAnimationDriver } from '@angular/platform-browser/a
 import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
 import { PostsComponent } from './components/posts/posts.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 const appRoutes: Routes = [
   { path: 'first-page', component: HomeComponent },
@@ -40,12 +42,14 @@ const appRoutes: Routes = [
     HomeComponent,
     UserComponent,
     UsersComponent,
-    PostsComponent
+    PostsComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
