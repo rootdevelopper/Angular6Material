@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
-import {Post} from '../../models/Post';
+import { Post } from '../../models/Post';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posts',
@@ -10,7 +11,15 @@ import {Post} from '../../models/Post';
 export class PostsComponent implements OnInit {
 
   posts: Post[];
-  constructor(private postService: PostService ) { }
+  currentPost: Post = {
+    id: 0,
+    title: '',
+    body: ''
+  }
+
+  isEdit: boolean = false;
+
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
     this.postService.getPosts().subscribe(posts => {
@@ -18,7 +27,27 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  onNewPost(post: Post){
+  onNewPost(post: Post) {
     this.posts.unshift(post);
+  }
+
+  editPost(post: Post) {
+    this.currentPost = post;
+    this.isEdit = true;
+  }
+
+  onUpdatedPost(post: Post) {
+    this.posts.forEach((currentPost, index) => {
+      if (post.id === currentPost.id) {
+        this.posts.splice(index, 1);
+        this.posts.unshift(post);
+        this.isEdit = false;
+        currentPost = {
+          id: 0,
+          title: '',
+          body: ''
+        }
+      }
+    });
   }
 }
