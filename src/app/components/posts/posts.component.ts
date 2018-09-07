@@ -35,6 +35,17 @@ export class PostsComponent implements OnInit {
     this.currentPost = post;
     this.isEdit = true;
   }
+  removePost(post: Post){
+    this.postService.removePost(post).subscribe(()=> {
+      this.posts.forEach((currentPost, index) => {
+        if (post.id === currentPost.id) {
+          this.posts.splice(index, 1);
+          this.posts.unshift(post);
+        }
+      });
+
+    })
+  }
 
   onUpdatedPost(post: Post) {
     this.posts.forEach((currentPost, index) => {
