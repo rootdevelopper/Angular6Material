@@ -29,9 +29,9 @@ import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 
 const appRoutes: Routes = [
-  { path: 'first-page', component: HomeComponent },
-  { path: 'second-page', component: UserComponent },
-  { path: 'third-page', component: UsersComponent },
+  { path: 'home-page', component: HomeComponent },
+  { path: 'user-page', component: UserComponent },
+  { path: 'users-page', component: UsersComponent },
   { path: 'post-page', component: PostsComponent }
 ];
 
