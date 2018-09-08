@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {FormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,13 +28,17 @@ import { PostService } from './services/post.service';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const appRoutes: Routes = [
   { path: 'home-page', component: HomeComponent },
   { path: 'user-page', component: UserComponent },
   { path: 'users-page', component: UsersComponent },
   { path: 'post-page', component: PostsComponent },
-  { path: 'post-details/:id', component: PostDetailsComponent }
+  { path: 'post-details/:id', component: PostDetailsComponent },
+
+
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
@@ -46,7 +50,8 @@ const appRoutes: Routes = [
     UsersComponent,
     PostsComponent,
     PostFormComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
