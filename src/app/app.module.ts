@@ -27,12 +27,14 @@ import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { PostDetailsComponent } from './components/post-details/post-details.component';
 
 const appRoutes: Routes = [
   { path: 'home-page', component: HomeComponent },
   { path: 'user-page', component: UserComponent },
   { path: 'users-page', component: UsersComponent },
-  { path: 'post-page', component: PostsComponent }
+  { path: 'post-page', component: PostsComponent },
+  { path: 'post-details/:id', component: PostDetailsComponent }
 ];
 
 @NgModule({
@@ -43,7 +45,8 @@ const appRoutes: Routes = [
     UserComponent,
     UsersComponent,
     PostsComponent,
-    PostFormComponent
+    PostFormComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,

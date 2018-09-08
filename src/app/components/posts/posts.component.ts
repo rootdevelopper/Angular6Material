@@ -15,9 +15,9 @@ export class PostsComponent implements OnInit {
     id: 0,
     title: '',
     body: ''
-  }
+  };
 
-  isEdit: boolean = false;
+  isEdit = false;
 
   constructor(private postService: PostService) { }
 
@@ -35,8 +35,8 @@ export class PostsComponent implements OnInit {
     this.currentPost = post;
     this.isEdit = true;
   }
-  removePost(post: Post){
-    this.postService.removePost(post).subscribe(()=> {
+  removePost(post: Post) {
+    this.postService.removePost(post).subscribe(() => {
       this.posts.forEach((currentPost, index) => {
         if (post.id === currentPost.id) {
           this.posts.splice(index, 1);
@@ -44,7 +44,7 @@ export class PostsComponent implements OnInit {
         }
       });
 
-    })
+    });
   }
 
   onUpdatedPost(post: Post) {
@@ -57,7 +57,7 @@ export class PostsComponent implements OnInit {
           id: 0,
           title: '',
           body: ''
-        }
+        };
       }
     });
   }

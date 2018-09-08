@@ -14,6 +14,12 @@ export class PostService {
   postUrl: string = 'https://jsonplaceholder.typicode.com/posts'
   constructor(private http: HttpClient) { }
 
+  getPost(post:Post | number): Observable<Post> {
+    const id = this.getTypeOfPost(post);
+    const url = `${this.postUrl}/${id}`;
+    return this.http.get<Post>(url);
+  }
+
   getPosts(): Observable<Post[]> {
 
     return this.http.get<Post[]>(this.postUrl);
@@ -29,9 +35,13 @@ export class PostService {
   }
 
   removePost(post: Post | number): Observable<Post> {
-    const id = typeof post  === 'number' ? post : post.id;
+    const id = this.getTypeOfPost(post);
     const url = `${this.postUrl}/${id}`;
    return this.http.delete<Post>(url, httpOptions);
   }
 
+
+  private getTypeOfPost(post: number | Post) {
+    return typeof post === 'number' ? post : post.id;
+  }
 }
