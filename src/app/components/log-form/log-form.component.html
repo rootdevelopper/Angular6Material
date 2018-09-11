@@ -1,0 +1,13 @@
+<mat-card>
+  <form (ngSubmit)="onSubmit()" >
+    <mat-card-content>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="AddA Log" name="name" [(ngModel)]="text"  value="">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [disabled]=!this.text>Add Log</button>
+      <button mat-raised-button color="warn" [hidden]=!this.text (click)="clearState()" >Clear</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

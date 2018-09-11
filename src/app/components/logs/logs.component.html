@@ -1,0 +1,18 @@
+<mat-card>  
+  <mat-card-content>
+      <mat-list *ngIf="loaded && logs.length > 0; else noLogs">
+          <mat-list-item *ngFor="let log of logs">
+            <a class="mat-spacer" (click)="onSelect(log); $event.stopPropagation()" href="#">{{log.text}} </a>
+            <span class="mat-spacer" >{{log.date | date: 'short'}} </span>
+            <button mat-raised-button (click)="onDelete(log)"> 
+              <mat-icon>
+                remove
+              </mat-icon> 
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <ng-template #noLogs>
+            <h1>  Create your first log </h1>
+        </ng-template>
+  </mat-card-content>
+</mat-card>
