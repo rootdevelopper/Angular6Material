@@ -12,7 +12,7 @@ export const environment = {
     apiKey:             keys.apiKey,
     authDomain:         keys.authDomain,
     databaseURL:        keys.databaseURL,
-    projectId:          keys.storageBucket ,
+    projectId:          keys.projectId,
     storageBucket:      keys.storageBucket,
     messagingSenderId:  keys.messagingSenderId
   }
