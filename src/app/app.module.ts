@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -15,7 +17,11 @@ import {
   MatIconModule,
   MatListModule,
   MatCardModule,
-  MatTableModule
+  MatTableModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRadioModule,
+  MatSelectModule
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -72,6 +78,12 @@ const appRoutes: Routes = [
     MatListModule,
     MatCardModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    FormsModule,
+    FlashMessagesModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

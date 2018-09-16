@@ -2,7 +2,7 @@
   clients works!
 </p>
 
-
+<h2>Total Owed: {{totalOwed | currency}}</h2>
 <table mat-table [dataSource]="dataRows" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -30,6 +30,15 @@
   <ng-container matColumnDef="balance">
     <th mat-header-cell *matHeaderCellDef> balance </th>
     <td mat-cell *matCellDef="let client"> {{client.balance  | currency }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> Details </th>
+    <td mat-cell *matCellDef="let client"> 
+    <a routerLink="['client/{{client.id}}']" routerLinkActive="router-link-active" >
+    <button  mat-raised-button color="primary"><mat-icon>folder_shared</mat-icon></button>
+    </a>
+   </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="dataColumns"></tr>

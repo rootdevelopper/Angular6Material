@@ -1,3 +1,37 @@
-<p>
-  add-client works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Create new Client</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-header>
+  <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+    <mat-card-content>
+
+      <div class="example-container">
+        <mat-form-field>
+          <input type="text" name="firstName" #clientFirstName="ngModel" [(ngModel)]="firstName" matInput placeholder="First Name">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input type="text" name="lastName" #clientLastName="ngModel" [(ngModel)]="lastName" matInput placeholder="Last Name">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input type="email" name="email" #clientEmail="ngModel" [(ngModel)]="email" matInput placeholder="Email">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input type="number" name="balance" #clientBalance="ngModel" [(ngModel)]="balance" matInput placeholder="balance">
+        </mat-form-field>
+        <br>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button mat-raised-button type="submit" value="Submit">Submit</button>
+
+    </mat-card-actions>
+  </form>
+</mat-card>
