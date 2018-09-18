@@ -8,28 +8,32 @@
 
       <div class="example-container">
         <mat-form-field>
-          <input type="text" name="firstName" #clientFirstName="ngModel" [(ngModel)]="firstName" matInput placeholder="First Name">
+          <input type="text" name="firstName" #clientFirstName="ngModel" [(ngModel)]="client.firstName" matInput placeholder="First Name">
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input type="text" name="lastName" #clientLastName="ngModel" [(ngModel)]="lastName" matInput placeholder="Last Name">
+          <input type="text" name="lastName" #clientLastName="ngModel" [(ngModel)]="client.lastName" matInput placeholder="Last Name">
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input type="email" name="email" #clientEmail="ngModel" [(ngModel)]="email" matInput placeholder="Email">
+          <input type="email" name="email" #clientEmail="ngModel" [(ngModel)]="client.email" matInput placeholder="Email">
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input type="number" name="balance" #clientBalance="ngModel" [(ngModel)]="balance" matInput placeholder="balance">
+          <input type="number" name="balance" #clientBalance="ngModel" [(ngModel)]="client.balance" matInput placeholder="balance">
         </mat-form-field>
         <br>
       </div>
 
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
+     
+        <a routerLink="/" routerLinkActive="router-link-active">
+          <span>
+              <mat-icon>arrow_back</mat-icon>
+          </span>
+        </a>
+      
       <button mat-raised-button type="submit" value="Submit">Submit</button>
 
     </mat-card-actions>

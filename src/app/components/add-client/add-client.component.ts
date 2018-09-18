@@ -32,18 +32,19 @@ export class AddClientComponent implements OnInit {
   }
 
   onSubmit({ value, valid }: { value: Client, valid: boolean }) {
-    console.log(valid);
     if (!valid) {
       this.flashMessage.show('the form is not complete', {
-     timeout: 3000
+        cssClass: 'bad',
+        timeout: 3000
       });
     }
     this.flashMessage.show('got it', {
-     timeout: 3000
+      cssClass: 'good',
+      timeout: 3000
     });
 
     this.clientService.newClient(value);
-     this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
 }

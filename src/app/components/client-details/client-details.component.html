@@ -11,6 +11,15 @@
     <a (click)="showBAlanceUpadteInfo =!showBAlanceUpadteInfo" >
       <mat-icon mat-font-icon="fa-icon" class="fa fa-pencil">edit</mat-icon>
     </a>
+
+    <form *ngIf="showBAlanceUpadteInfo" (submit)="updateBalance()">
+      <mat-form-field >
+        <input matInput type="text" placeholder="balance" name="balance" [(ngModel)]="client.balance">
+      </mat-form-field>
+      <button mat-raised-button type="submit">Update</button>
+      
+    </form>
+
     </mat-card-title>
     <mat-card-subtitle>Client ID: {{client.id}}</mat-card-subtitle>
   </mat-card-header>
@@ -24,7 +33,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button>
-      <a routerLink="/client/edit{{id}}" routerLinkActive="router-link-active">Edit </a>
+      <a routerLink="/client/edit/{{id}}" routerLinkActive="router-link-active">Edit </a>
     </button>
     <button mat-raised-button (click)="onDeleteClick()">Delete</button>
   </mat-card-actions>
