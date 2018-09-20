@@ -37,16 +37,17 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'clients', component: ClientsComponent },
-  { path: 'client/add', component: AddClientComponent },
-  { path: 'client/edit/:id', component: EditClientComponent },
-  { path: 'client/:id', component: ClientDetailsComponent },
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'clients', component: ClientsComponent, canActivate: [AuthGuard] },
+  { path: 'client/add', component: AddClientComponent, canActivate: [AuthGuard] },
+  { path: 'client/edit/:id', component: EditClientComponent, canActivate: [AuthGuard] },
+  { path: 'client/:id', component: ClientDetailsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -88,7 +89,7 @@ const appRoutes: Routes = [
     FlashMessagesModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [ClientService, AuthService],
+  providers: [ClientService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
