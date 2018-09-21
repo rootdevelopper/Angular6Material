@@ -21,7 +21,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatRadioModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCheckboxModule,
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -38,6 +39,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { SettingsService } from './services/settings.service';
+import { RegisterGuard } from './guards/register.guard';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -46,7 +49,7 @@ const appRoutes: Routes = [
   { path: 'client/edit/:id', component: EditClientComponent, canActivate: [AuthGuard] },
   { path: 'client/:id', component: ClientDetailsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [RegisterGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 ];
@@ -86,10 +89,11 @@ const appRoutes: Routes = [
     MatRadioModule,
     MatSelectModule,
     FormsModule,
+    MatCheckboxModule,
     FlashMessagesModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [ClientService, AuthService, AuthGuard],
+  providers: [ClientService, AuthService, AuthGuard, SettingsService, RegisterGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,8 +10,8 @@
       <a *ngIf="isLoggedIn" mat-list-item [routerLink]="['/settings']" routerLinkActive="router-link-active">Settings</a>
       <a *ngIf="isLoggedIn" mat-list-item href="#" (click)="onLogOutClick()">Log Out</a>
 
-      <a *ngIf="!isLoggedIn" mat-list-item [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a>
-      <a *ngIf="!isLoggedIn" mat-list-item [routerLink]="['/login']" routerLinkActive="router-link-active">LogIn</a>
+      <a *ngIf="!isLoggedIn && showRegister" mat-list-item [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a>
+      <a *ngIf="!isLoggedIn && showRegister" mat-list-item [routerLink]="['/login']" routerLinkActive="router-link-active">LogIn</a>
 
     </mat-nav-list>
   </mat-sidenav>
