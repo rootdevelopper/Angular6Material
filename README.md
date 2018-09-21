@@ -1,5 +1,35 @@
 # NgMat6FTB
 
+## Angular 6 Material with Firebase:
+
+To set up the project:
+
+1. create a project in firebase.
+
+2. create a database in firebase named 'clients'.
+
+On the rules tab change the permissions as follow:
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+3.clone this project to your local git.
+
+4. Add your firebase credentials on firebase.dev.ts and firebase.prod.ts under environmentKeys folder.
+
+5. create a new user manually in firebase, this user will be used to log in once the application is running.
+
+6. Run npm start
+
+7. Once the application is running you should be able to log in with the previously created user credentials.
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
 ## Development server
